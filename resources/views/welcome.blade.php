@@ -1,33 +1,119 @@
-<!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+@extends('layout.app')
 
-        <title>Laravel 9 + Bootstrap Template</title>
+@section('content-header')
 
-        {{-- Includiamo gli assets con la direttiva @vite --}}
-        @vite('resources/js/app.js')
-    </head>
-    <body>
+<style>
+.containerHeader {
+  display: flex;
+  align-items: center;
+  height: 150px;
+  text-align: center;
+}
 
-        <main>
-            <div class="container">
-                <div class="row">
-                    <div class="col text-center">
+.containerLogoHeader {
+  width: 40%;
+}
 
-                        <div class="card">
-                            <div class="card-body">
-                                <img src="{{ Vite::asset('resources/img/laravel.png') }}" alt="">
+.containerLinksHeader {
+  width: 60%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
-                                <h1 class="card-title">Laravel 9 + Bootstrap Template</h1>
-                            </div>
-                        </div>
+ul {
+    display: flex;
+    justify-content: center;
+    list-style: none;
+}
 
-                    </div>
-                </div>
-            </div>
-        </main>
+li a {
+    text-decoration: none;
+    color: rgb(0, 0, 0);
+    margin: 0 20px;
+}
 
-    </body>
-</html>
+.active {
+    color: rgb(29, 79, 218);
+}
+
+</style>
+
+<div class="containerHeader">
+    <div class="containerLogoHeader">
+      <img src="resources/img/dc-logo.png" alt="DC Logo Header">
+    </div>
+    <div class="containerLinksHeader">
+      <ul>
+        <li><a href="#">Character</a></li>
+        <li><a class="active" href="#">Comics</a></li>
+        <li><a href="#">Movies</a></li>
+        <li><a href="#">TV</a></li>
+        <li><a href="#">Games</a></li>
+        <li><a href="#">Collectibles</a></li>
+        <li><a href="#">Videos</a></li>
+        <li><a href="#">Fans</a></li>
+        <li><a href="#">News</a></li>
+        <li><a href="#">Shop</a></li>
+      </ul>
+    </div>
+</div>
+
+@endsection
+
+@section('content-main')
+
+<style>
+.container{
+  display: flex;
+  width: 100%;
+}
+.card{
+  width: 30%;
+  margin: 10px
+}
+
+.card img{
+  width: 100%
+}
+
+.comic-text{
+  text-align: center;
+}
+</style>
+
+<div class="container">
+    @foreach ($comics as $comic)
+    <div class="card">
+        <img src="{{ $comics[0]['thumb'] }}" alt="">
+        <div class="comic-text">
+          {{ $comic['title'] }}
+        </div>
+      </div>
+    @endforeach
+</div>
+
+@endsection
+
+@section('content-footer')
+
+<style>
+.containerFooter{
+  color: white;
+  background-color: black;
+  text-align: center;
+}
+</style>
+
+<div class="containerFooter">
+
+  <div>
+    <h2>
+      Footer Bellissimo
+    </h2>
+  </div>
+
+</div>
+
+@endsection
